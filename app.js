@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const app=express();
 const port='3000';
@@ -7,7 +8,11 @@ app.get('/',function(request,response){
     response.send("Express esimerkki");
 });
 app.get('/esim1',function(request,response){
-    response.send("Tämä on endpoint /esim1")
+    response.send("Tämä on Endpoint /esim1")
+});
+
+app.get('/esim2/:fname?',function(request,response){
+    response.send("terve "+request.params.fname);
 });
 
 app.listen(port,function(){
