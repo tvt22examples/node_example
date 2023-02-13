@@ -1,10 +1,13 @@
-const { response } = require('express');
 const express = require('express');
 const app=express();
 const port='3000';
 
+const bookRouter=require('./controllers/book');
+
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+
+app.use('/book',bookRouter);
 
 app.use(function(request, response, next){
     console.log("Olen Middleware 1");
@@ -29,7 +32,7 @@ app.get('/esim2/:fname?',function(request,response){
 });
 
 app.post('/',function(request, response){
-    response.json(request.body);
+    response.send(request.body);
     console.log(request.body.etunimi);
 });
 
